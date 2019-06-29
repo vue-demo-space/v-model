@@ -4,7 +4,13 @@
 $ vue serve App.vue
 ```
 
-## 单组件内
+参考：
+
+* [v-model](https://cn.vuejs.org/v2/api/#v-model)
+* [表单输入绑定](https://cn.vuejs.org/v2/guide/forms.html)
+* [自定义事件](https://cn.vuejs.org/v2/guide/components-custom-events.html)
+
+## v-model 单组件内
 
 ```vue
 <template>
@@ -74,7 +80,7 @@ export default {
 
 代码在这个 [commit](https://github.com/vue-demo-space/v-model/tree/9553d779917941ecc61b7ac8f0fb0219559c4ae3)
 
-## 父子组件
+## v-model 父子组件
 
 有时候父组件要给子组件传值，同时子组件会修改这个值。我们不能直接修改这个值，而应该在父组件上修改。用 props down，emit up 去实现
 
@@ -130,3 +136,55 @@ export default {
   </div>
 </template>
 ```
+
+代码在这个 [commit](https://github.com/vue-demo-space/v-model/tree/78a60172111a440fc93b6e520ccec100f822c6f3)
+
+## 普通父子组件
+
+v-model 的使用场景优先，如果是普通父子组件呢？
+
+父组件：
+
+```vue
+<template>
+  <div>
+    <Child :value.sync="val" />
+    {{ val }}
+  </div>
+</template>
+
+<script>
+import Child from './Child'
+
+export default {
+  data () {
+    return {
+      val: 'hello'
+    }
+  },
+  components: { 
+    Child
+  }
+}
+</script>
+```
+
+子组件：
+
+```vue
+<template>
+  <input :value="val" @input="$emit('update:value', $event.target.value)" />
+</template>
+
+<script>
+export default {
+  props: {
+    val: String
+  }
+}
+</script>
+```
+
+`.sync` 表示该值双向绑定，emit 的格式是一定的，`update:myPropName` 的形式
+
+代码在 master 上

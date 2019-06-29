@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Child v-model="val" />
+    <Child :value.sync="val" />
     {{ val }}
   </div>
 </template>
