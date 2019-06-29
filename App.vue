@@ -1,16 +1,21 @@
 <template>
   <div>
-    <input :value="val" @input="val = $event.target.value"/>
+    <Child v-model="val" />
     {{ val }}
   </div>
 </template>
 
 <script>
+import Child from './Child'
+
 export default {
   data () {
     return {
       val: 'hello'
     }
+  },
+  components: { 
+    Child
   }
 }
 </script>
