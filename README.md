@@ -187,4 +187,6 @@ export default {
 
 `.sync` 表示该值双向绑定，emit 的格式是一定的，`update:myPropName` 的形式
 
+这样就可以绑定任意值了，而不是像 v-model 一样只能绑定 value
+
 代码在 master 上
