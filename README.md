@@ -126,7 +126,7 @@ export default {
 </script>
 ```
 
-父组件可以直接用 `v-model` 优化：（`v-model` 虽然是语法糖，但是在单个 input 组件和自定义组件中，用法还是有区别的，可以对比下 @input 部分）
+父组件可以直接用 `v-model` 优化：（`v-model` 虽然是语法糖，但是在单个 input 组件和自定义组件中，用法还是有区别的，可以对比下 @input 部分，`@input="val = $event" ` vs `@input="val = $event.target.value"`）
 
 ```vue
 <template>
@@ -141,7 +141,7 @@ export default {
 
 ## 普通父子组件
 
-v-model 的使用场景有限，如果是普通父子组件呢？
+v-model 的使用场景有限（主要是 v-model 限制了 props 名为 value，有的时候 value 已经被占用了，而且限制了事件名为 input），如果是普通父子组件呢？
 
 父组件：
 
